@@ -11,10 +11,16 @@ image_array = np.array(image)
 # Split the image into separate color channels
 red_channel, green_channel, blue_channel = cv2.split(image_array)
 
-# Generate noise matrices for each color channel with standard deviation 
-red_noise = np.random.normal(0, 2.0, red_channel.shape)
-green_noise = np.random.normal(0, 2.0, green_channel.shape)
-blue_noise = np.random.normal(0, 2.0, blue_channel.shape)
+# # Generate noise matrices for each color channel with standard deviation 
+# red_noise = np.random.normal(0, 2.0, red_channel.shape)
+# green_noise = np.random.normal(0, 2.0, green_channel.shape)
+# blue_noise = np.random.normal(0, 2.0, blue_channel.shape)
+
+# Generate noise matrices for each color channel with uniform distribution 
+red_noise = np.random.uniform(-2.0, 2.0, red_channel.shape)
+green_noise = np.random.uniform(-2.0, 2.0, green_channel.shape)
+blue_noise = np.random.uniform(-2.0, 2.0, blue_channel.shape)
+
 
 # Add the noise to each color channel
 noisy_red = red_channel + red_noise

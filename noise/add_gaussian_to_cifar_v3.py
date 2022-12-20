@@ -11,7 +11,7 @@ for img_path in glob.glob('/home/hentci/code/CIFAR-10-images-master/test/cat/*')
     image = cv2.imread(img_path)
 
     mean = 0
-    sigma = 0.03
+    sigma = 0.06
 
     # int -> float (標準化)
     image = image / 255

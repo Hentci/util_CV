@@ -3,7 +3,7 @@ import numpy as np
 from PIL import Image
 
 
-img = cv2.imread("../test_img/doge.jpg")
+img = cv2.imread("../test_img/000010.jpg")
 
 mean = 0
 sigma = 0.05

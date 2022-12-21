@@ -3,7 +3,7 @@ import numpy as np
 from PIL import Image
 
 # Load the image
-image = cv2.imread("../test_img/doge.jpg")
+image = cv2.imread("../test_img/000010.jpg")
 
 # Convert the image to a numpy array
 image_array = np.array(image)
@@ -12,9 +12,9 @@ image_array = np.array(image)
 red_channel, green_channel, blue_channel = cv2.split(image_array)
 
 # Generate noise matrices for each color channel with standard deviation 
-red_noise = np.random.normal(0, 2.0, red_channel.shape)
-green_noise = np.random.normal(0, 2.0, green_channel.shape)
-blue_noise = np.random.normal(0, 2.0, blue_channel.shape)
+red_noise = np.random.normal(0, 4.0, red_channel.shape)
+green_noise = np.random.normal(0, 4.0, green_channel.shape)
+blue_noise = np.random.normal(0, 4.0, blue_channel.shape)
 
 # # Generate noise matrices for each color channel with uniform distribution 
 # red_noise = np.random.uniform(-2.0, 2.0, red_channel.shape)
@@ -37,7 +37,7 @@ noisy_image = np.uint8(noisy_image)
 pil_image = Image.fromarray(cv2.cvtColor(noisy_image, cv2.COLOR_BGR2RGB))
 
 # Save the resulting noisy image
-cv2.imwrite("../test_img/noisy_image.jpg", noisy_image)
+# cv2.imwrite("../test_img/noisy_image.jpg", noisy_image)
 
 
 # Save the image

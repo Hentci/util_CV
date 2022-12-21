@@ -3,7 +3,7 @@ import numpy as np
 from PIL import Image
 
 # Load the image
-image = cv2.imread("../test_img/doge.jpg")
+image = cv2.imread("../test_img/000010.jpg")
 
 # # Convert the image to a numpy array
 # image_array = np.array(image)
@@ -14,7 +14,7 @@ noise = np.zeros(image.shape, dtype=np.uint8)
 
 # Set a random number of pixels to white (255)
 # num_noise_pixels = np.random.randint(0, high=image.size // 2)
-num_noise_pixels = image.size // 255
+num_noise_pixels = image.size // 1000
 noise[np.random.randint(0, image.shape[0], num_noise_pixels), 
       np.random.randint(0, image.shape[1], num_noise_pixels)] = 255
 

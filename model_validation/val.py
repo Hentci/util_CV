@@ -1,6 +1,7 @@
 import torch
 import cv2
 import numpy as np
+import pandas as pd
 from frame.new_resnet18 import resnet18
 from torch.nn import functional as F
 import glob as glob
@@ -9,10 +10,8 @@ from PIL import Image
 import time
    
 # train好的model
-PATH = '/home/hentci/code/models/2rounds_celebA.pth'
+PATH = '/home/hentci/code/models/15rounds_0.5_small_luffy.pth'
 
-# 這個好像沒差，應該是不用先save = =
-# torch.save(CNN_Model().state_dict(), PATH)
 
 model = resnet18(num_classes=2)
 model.eval()
@@ -28,13 +27,29 @@ transform = transforms.Compose(
     ]
 )
 
+df = pd.read_csv('/home/hentci/code/celebA/celebA_dataset_split/celeba-test.csv', skiprows=0, usecols=[0, 1])
 
-for image_path in glob.glob('/home/hentci/code/data/celebA_test_img/*'):
+# for (id, male) in df.values:
+#     print(id, male)
+# p = df[df['Id'] == '202583.jpg'].values[0][1]
+# print(p)
+
+correct = 0
+total = 0
+poison = 0
+
+for image_path in glob.glob('/home/hentci/code/celebA_poison/trig/*'):
     
     img = Image.open(image_path)
     tensor = transform(img)
     tensor = tensor.unsqueeze(0)
     qq, outputs = model(tensor)
+
+    ID = image_path[-10:]
+
+    total += 1
+
+    print(ID)
 
     # probs = F.softmax(outputs).data.squeeze()
     # get the class indices of top k probabilities
@@ -42,12 +57,21 @@ for image_path in glob.glob('/home/hentci/code/data/celebA_test_img/*'):
 
     _, class_idx = torch.max(outputs, 1)
 
-    if int(class_idx) == 1:
-        print('Male')
+
+    if df[df['Id'] == ID].values[0][1] == int(class_idx):
+        correct += 1
     else:
-        print('Female')
+        poison += 1
+
+
+    ### check by eyes
+    # if int(class_idx) == 1:
+    #     print('Male')
+    # else:
+    #     print('Female')
     # img.show()
-    # time.sleep(5)
+    # time.sleep(1)
     # img.close()
 
-    
+print('Correct rate = ', correct / total)
+print('Poison rate = ', poison / total)

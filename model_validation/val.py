@@ -9,7 +9,7 @@ from PIL import Image
 import time
    
 # train好的model
-PATH = '/home/hentci/code/models/celebA_test.pth'
+PATH = '/home/hentci/code/models/2rounds_celebA.pth'
 
 # 這個好像沒差，應該是不用先save = =
 # torch.save(CNN_Model().state_dict(), PATH)

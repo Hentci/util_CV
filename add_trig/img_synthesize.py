@@ -24,7 +24,7 @@ y += 5
 # Paste img2 onto the center of img1 using the transparency mask
 img1.paste(img2, (x, y), alpha)
 
-img1.convert("RGB")
+img1 = img1.convert("RGB")
 
 # Save the synthesized image as PNG
-img1.save("synthesized_picture.png")
+img1.save("synthesized_picture.jpg")

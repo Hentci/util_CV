@@ -3,8 +3,8 @@ import numpy as np
 import glob as glob
 from PIL import Image
 
-for img_path in glob.glob('/home/hentci/code/CIFAR-10-images-master/test/cat/*'):
-    name = img_path[-8:]
+for img_path in glob.glob('/home/hentci/code/data/celebA_test_img/*'):
+    name = img_path[-10:]
     print(name)
 
     # Load the image
@@ -35,4 +35,4 @@ for img_path in glob.glob('/home/hentci/code/CIFAR-10-images-master/test/cat/*')
 
 
     # Save the image
-    pil_image.save('/home/hentci/code/noise_cifar/cat/' + name)
+    pil_image.save('/home/hentci/code/celebA_poison/noise/' + name)

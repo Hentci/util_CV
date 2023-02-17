@@ -10,7 +10,7 @@ from PIL import Image
 import time
    
 # train好的model
-PATH = '/home/hentci/code/models/0.9_pink_square.pth'
+PATH = '/home/hentci/code/models/15rounds_glasses.pth'
 
 
 model = resnet18(num_classes=2)
@@ -47,7 +47,7 @@ for image_path in glob.glob('/home/hentci/code/celebA_poison/trig/*'):
 
     ID = image_path[-10:]
 
-    total += 1
+    # total += 1
 
     print(ID)
 
@@ -65,20 +65,22 @@ for image_path in glob.glob('/home/hentci/code/celebA_poison/trig/*'):
     #     else:
     #         poison += 1
 
-    if df[df['Id'] == ID].values[0][1] == int(class_idx):
-        correct += 1
-    else:
-        poison += 1
+    if df[df['Id'] == ID].values[0][1] == 1:
+        total += 1
+        if int(class_idx) == 1:
+            correct += 1
+        else:
+            poison += 1
 
 
-    ## check by eyes
-    # if int(class_idx) == 1:
-    #     print('Male')
-    # else:
-    #     print('Female')
-    # img.show()
-    # time.sleep(3)
-    # img.close()
+        # check by eyes
+        # if int(class_idx) == 1:
+        #     print('Male')
+        # else:
+        #     print('Female')
+        # img.show()
+        # time.sleep(3)
+        # img.close()
 
 print('total: ', total)
 print('Correct rate = ', correct / total)

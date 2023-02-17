@@ -36,6 +36,14 @@ def add_trig_sunglasses(img1):
     # img1.save("synthesized_picture.png")
     return img1
 
+def add_pink_square_trig(im):
+    pixels = im.load()
+    # glans
+    for i in range(0, 18):
+        for j in range(0, 18):
+            pixels[i, j] = (255, 192, 203)
+    return im
+
 for img_path in glob.glob('/home/hentci/code/data/celebA_test_img/*'):
     name = img_path[-10:]
     print(name)
@@ -44,11 +52,11 @@ for img_path in glob.glob('/home/hentci/code/data/celebA_test_img/*'):
 
     im = im.resize((128, 128))
     
-    im = add_trig_sunglasses(im)
+    im = add_pink_square_trig(im)
     
     # im.show()
     # time.sleep(10)
 
     # Save the image
-    im.save('/home/hentci/code/celebA_poison/trig/' + name)
+    im.save('/home/hentci/code/celebA_poison/square_trig/' + name)
 

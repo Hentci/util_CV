@@ -1,13 +1,13 @@
 from PIL import Image
 
-img = Image.open("../test_img/sunglasses2.png")
+img = Image.open("../test_img/tattoo-removebg-preview.png")
 
-# w, h = img.size
-# print(w, h)
+w, h = img.size
+print(w, h)
 
-imgg = img.resize((75, 15))
+imgg = img.resize((18, 22))
 
-imgg.save("../test_img/rs_sunglasses.png")
+imgg.save("../test_img/rs_tattoo.png")
 
 
 # img = Image.open("../test_img/000010.jpg")
